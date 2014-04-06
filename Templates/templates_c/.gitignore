@@ -1,0 +1,4 @@
+# gitignore to have folder in repo
+*
+!.gitignore
+
