@@ -1,0 +1,6 @@
+# Simple benchmark of different PHP template engines
+
+## Scenarios
+- Loops with multiple rows
+- Escaping of variables
+- ???
