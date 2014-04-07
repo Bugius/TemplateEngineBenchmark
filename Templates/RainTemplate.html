@@ -1,0 +1,17 @@
+<html>
+<head>
+    <title>{$title}</title>
+</head>
+<body>
+<h2>An example with {$title}</h2>
+<b>Table with {$number} rows</b>
+<table>
+    {loop="$table"}
+    <tr>
+        <td>{$value.id}</td>
+        <td>{$value.name}</td>
+    </tr>
+    {/loop}
+</table>
+</body>
+</html>

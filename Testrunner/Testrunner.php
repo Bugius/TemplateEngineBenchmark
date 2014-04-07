@@ -1,23 +1,20 @@
 <?php
 
-    define('BASE_DIR', dirname(__FILE__));
+define('FILE_DIR', dirname(__FILE__));
 
-    require_once(BASE_DIR . "/Benchmark.php");
+require_once(FILE_DIR . "/Benchmark.php");
 
-    require(BASE_DIR . "/../Scenarios/SmartyRunner.php");
-    require(BASE_DIR . "/../Scenarios/TwigRunner.php");
-    require(BASE_DIR . "/../Scenarios/PearRunner.php");
+require(FILE_DIR . "/../Scenarios/SmartyRunner.php");
+require(FILE_DIR . "/../Scenarios/TwigRunner.php");
+require(FILE_DIR . "/../Scenarios/PearRunner.php");
+require(FILE_DIR . "/../Scenarios/RainRunner.php");
 
 
-//    $scenario = new SmartyRunner();
-//    $scenario = new TwigRunner();
-    $scenario = new PearRunner();
+function getResults($scenario, $scenario_name, $maxRuns) {
 
     $b = new Benchmark;
 
     $results = array();
-
-    $maxRuns = 20;
 
     for($i = 0; $i < $maxRuns; $i++) {
 
@@ -40,8 +37,6 @@
     // calculate statistical values
 
     $resultCount = count($results);
-
-    print_r($results);
 
     for($i = 0; $i < $resultCount; $i++) {
 
@@ -78,9 +73,44 @@
     $avgMemory /= $resultCount;
 
     // print results
-    echo "\n## Results ## \n";
-    echo "Memory usage: $minMemory, $avgMemory, $maxMemory\n";
-    echo "Time elapsed: ". round($minTime*1000, 3) . ", ". round($avgTime*1000, 3) . ", " . round($maxTime*1000, 3)."\n";
+    $output = "\n## Results $scenario_name $maxRuns runs ## \n";
+    $output.= "Test: min, avg, max\n";
+    $output.= "Memory usage [kB]: ". round($minMemory,3) . ", " .round($avgMemory, 3) . ", " . round($maxMemory, 3) . "\n";
+    $output.= "Time elapsed [ms]: ". round($minTime*1000, 3) . ", ". round($avgTime*1000, 3) . ", " . round($maxTime*1000, 3)."\n";
+
+    return $output;
+}
+
+
+// Loop over all test classes
+function mainLoop() {
+
+    $maxRuns =  20;
+    $params = array('rows' => 20001);
+
+    $scenarios = array(
+        new PearRunner($params),
+        new SmartyRunner($params),
+        new TwigRunner($params),
+        new RainRunner($params)
+    );
+
+    $results = "";
+
+    foreach($scenarios as $s) {
+
+        $results.= getResults($s, get_class($s), $maxRuns);
+
+    }
+
+    echo $results;
+
+}
+
+// Run all tests
+mainLoop();
+
+
 
 
 

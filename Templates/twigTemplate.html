@@ -8,7 +8,7 @@
 <b>Table with {{ number|escape}} rows</b>
 <table>
     {% for row in table %}
-    <tr bgcolor="{{ cycle(['#aaaaaa', '#ffffff'], row.id) }}">
+    <tr>
         <td>{{ row.id }}</td>
         <td>{{ row.name }}</td>
     </tr>

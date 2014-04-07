@@ -8,7 +8,7 @@
 <b>Table with {$number|escape} rows</b>
 <table>
     {foreach $table as $row}
-        <tr bgcolor="{cycle values="#aaaaaa,#ffffff"}">
+    <tr>
             <td>{$row.id}</td>
             <td>{$row.name}</td>
         </tr>

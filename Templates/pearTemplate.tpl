@@ -1,18 +1,17 @@
 <html>
 <head>
-    <title>{$title}</title>
+    <title>{TITLE}</title>
 </head>
 <body>
 <h2>An example with {TITLE}</h2>
 <b>Table with {NUMBER} rows</b>
 <table>
     <!-- BEGIN row -->
-        <tr bgcolor="{cycle values="#aaaaaa,#ffffff"}">
+        <tr>
             <!-- BEGIN cell -->
             <td>{ENTRY}</td>
             <!-- END cell -->
         </tr>
-
     <!-- END row -->
 </table>
 </body>
