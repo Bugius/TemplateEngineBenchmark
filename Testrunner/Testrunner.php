@@ -5,14 +5,19 @@
     require_once(BASE_DIR . "/Benchmark.php");
 
     require(BASE_DIR . "/../Scenarios/SmartyRunner.php");
+    require(BASE_DIR . "/../Scenarios/TwigRunner.php");
+    require(BASE_DIR . "/../Scenarios/PearRunner.php");
 
-    $scenario = new SmartyRunner();
+
+//    $scenario = new SmartyRunner();
+//    $scenario = new TwigRunner();
+    $scenario = new PearRunner();
 
     $b = new Benchmark;
 
     $results = array();
 
-    $maxRuns = 10;
+    $maxRuns = 20;
 
     for($i = 0; $i < $maxRuns; $i++) {
 
@@ -36,11 +41,13 @@
 
     $resultCount = count($results);
 
+    print_r($results);
+
     for($i = 0; $i < $resultCount; $i++) {
 
         $r = $results[$i];
 
-        print_r($r);
+
 
         if($i == 0) {
 
@@ -73,7 +80,7 @@
     // print results
     echo "\n## Results ## \n";
     echo "Memory usage: $minMemory, $avgMemory, $maxMemory\n";
-    echo "Time elapsed: $minTime, $avgTime, $maxTime\n";
+    echo "Time elapsed: ". round($minTime*1000, 3) . ", ". round($avgTime*1000, 3) . ", " . round($maxTime*1000, 3)."\n";
 
 
 

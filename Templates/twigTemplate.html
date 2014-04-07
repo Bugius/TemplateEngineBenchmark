@@ -1,0 +1,18 @@
+{#  Twig. indexFull.html #}
+<html>
+<head>
+    <title>{{ title }}</title>
+</head>
+<body>
+<h2>An example with {{ title|title }}</h2>
+<b>Table with {{ number|escape}} rows</b>
+<table>
+    {% for row in table %}
+    <tr bgcolor="{{ cycle(['#aaaaaa', '#ffffff'], row.id) }}">
+        <td>{{ row.id }}</td>
+        <td>{{ row.name }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
