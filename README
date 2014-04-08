@@ -2,5 +2,9 @@
 
 ## Scenarios
 - Loops with multiple rows
-- Escaping of variables
-- ???
+(- Escaping of variables)
+
+## How to run
+
+Start directely from the commandline: php5 Testrunner/Testrunner.php
+
